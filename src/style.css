@@ -1,0 +1,49 @@
+html {
+    font-family: 'Manrope', sans-serif;
+    background-color: #282C34;
+    color: #FFF;
+    height: 100%;
+}
+
+body {
+    height: 100%;
+}
+
+#wrapper {
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+}
+
+input {
+    font-family: 'Manrope', sans-serif;
+}
+
+header {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.start-date-container {
+    margin-top: 10px;
+}
+
+.start-date-container input{
+    margin-left: 6px;
+    padding: 3px 5px;
+    width: 50px;
+}
+
+#controls .country-label {
+    margin-right: 10px;
+}
+
+#logo {
+    height: 50px;
+    margin: 0 15px 0 0;
+}
+
+#myChart {
+    width: 100vw;
+}
