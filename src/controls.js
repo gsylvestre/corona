@@ -30,11 +30,13 @@ const controls = {
 
     onChartTypeChange: function(){
         let selectedChartType = document.querySelector('#chart-type-container input[name="chart-type"]:checked').value;
+        localStorage.setItem('chartType', selectedChartType);
         controls.graph.changeToType(selectedChartType);
     },
 
     onDataTypeChange: function(){
         let selectedDataType = document.querySelector('#controls input[name="data-type"]:checked').value;
+        localStorage.setItem('dataType', selectedDataType);
         api.loadData(selectedDataType, controls.graph.update);
     },
 
@@ -52,6 +54,7 @@ const controls = {
     onStartDateChange: function(){
         let newStartDate = document.getElementById("start-date").value + "/20";
         controls.api.startsAtDate = moment(newStartDate, "DD/MM/YY");
+        localStorage.setItem('startsAtDate', controls.api.startsAtDate.format("YYYY-MM-DD"));
         controls.api.prepareData(controls.graph.update);
     },
 

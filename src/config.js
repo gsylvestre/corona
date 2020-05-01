@@ -44,8 +44,7 @@ const config = {
             name: "Brazil",
             color: "#657b83",
             population: 212559417	
-        }
-        
+        },
     ],
 
     sortCountries: function(){

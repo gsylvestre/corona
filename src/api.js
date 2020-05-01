@@ -8,7 +8,7 @@ const api = {
         labels: [],
         datasets: []
     },
-    startsAtDate: moment("2020-03-06"),
+    startsAtDate: null,
     config: null,
 
     setConfig: function(config){

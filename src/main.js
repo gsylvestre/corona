@@ -16,8 +16,17 @@ const app = {
             });
             graph.saveShowingCountries();
         }
+
+        graph.chartType = localStorage.getItem('chartType') ? localStorage.getItem('chartType') : "line";
+        document.querySelector('input[value="'+graph.chartType+'"]').checked = true;
+
+        let dataType = localStorage.getItem('dataType') ? localStorage.getItem('dataType') : "deaths";
+        document.querySelector('input[value="'+dataType+'"]').checked = true;
         
-        api.loadData("deaths", app.onDataLoaded);
+        api.startsAtDate = localStorage.getItem('startsAtDate') ? moment(localStorage.getItem('startsAtDate')) : moment("2020-03-06");
+        document.getElementById("start-date").value = api.startsAtDate.format("DD/MM");
+
+        api.loadData(dataType, app.onDataLoaded);
         controls.init(graph, api, config, app);
     },
 
