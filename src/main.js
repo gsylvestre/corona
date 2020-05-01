@@ -1,10 +1,10 @@
 import moment from 'moment';
-import Chart from 'chart.js';
 
 import './style.css';
 
 import config from './config';
 import api from './api';
+import graph from './graph';
 
 const dataHandler = {
     rawData: null,
@@ -81,7 +81,6 @@ const dataHandler = {
 
 const app = {
     
-    chart: null,
     countriesToInclude: [],
     startsAtDate: moment("2020-03-06"),
 
@@ -93,7 +92,7 @@ const app = {
 
     onDataLoaded: function(data){
         dataHandler.rawData = data;
-        dataHandler.prepareData(app.createInitialGraph);
+        dataHandler.prepareData(() => graph.createInitial(dataHandler.data));
     },
 
     addControls: function(){
@@ -130,12 +129,12 @@ const app = {
     onStartDateChange: function(){
         let newStartDate = document.getElementById("start-date").value + "/20";
         app.startsAtDate = moment(newStartDate, "DD/MM/YY");
-        dataHandler.prepareData(app.updateGraph);
+        dataHandler.prepareData(graph.update);
     },
 
     onCountryChange: function(){
         app.updateCountriesToInclude();
-        dataHandler.prepareData(app.updateGraph);
+        dataHandler.prepareData(graph.update);
     },
 
     updateCountriesToInclude: function(){
@@ -144,55 +143,8 @@ const app = {
         checkedCheckboxes.forEach(cb => {
             app.countriesToInclude.push(cb.value);
         });
-
     },
 
-    updateGraph: function(){
-        app.chart.update();
-    },
-
-    createInitialGraph: function(){
-        Chart.defaults.global.elements.point.radius = 2;
-        Chart.defaults.global.elements.line.borderBiwdth = 1;
-        Chart.defaults.global.elements.line.fill = false;
-        Chart.defaults.global.defaultFontFamily = "Manrope";
-        Chart.defaults.global.defaultFontColor = "#FFF";
-
-        const ctx = document.getElementById('myChart').getContext('2d');
-
-        app.chart = new Chart(ctx, {
-                type: 'line',
-                data: dataHandler.data,
-                options: {
-                    defaultFontFamily: 'Manrope',
-                    maintainAspectRatio: false, 
-                    animation: {
-                        duration: 0
-                    },
-                    legend: {
-                        position: 'bottom',
-                        onHover: function(evt, info){
-                            for(let i = 0; i < app.chart.data.datasets.length; i++){
-                                if (i !== info.datasetIndex){
-                                    app.chart.data.datasets[i].borderColor = "black";
-                                }
-                                else {
-                                    //app.chart.data.datasets[i].borderColor = "#F0F";
-                                }
-                            }
-                            app.chart.update();
-                        },
-                        onLeave: function(evt, info){
-                            for(let i = 0; i < app.chart.data.datasets.length; i++){
-                                app.chart.data.datasets[i].borderColor = app.chart.data.datasets[i].prevBorderColor;
-                            }
-                            app.chart.update();
-                        }
-                    }
-                },
-            }
-        );
-    }
 };
 
 
