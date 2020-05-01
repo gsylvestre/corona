@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corona JS</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Manrope&display=swap" rel="stylesheet">
+    <link rel="icon" href="./assets/virus.png">
+</head>
+<body>
+    <div id="wrapper">
+        <div id="canvas-wrapper">
+            <canvas id="myChart"></canvas>
+        </div>
+            
+        <header>
+            <form id="controls">
+                <div id="start-date-container"">
+                    <label for="start-date">Start from:</label><input name="start-date" id="start-date" value="06/03">
+                </div>
+                <div id="type-container"">
+                    <label>
+                        <input type="radio" name="data-type" value="deaths" checked>
+                        Deaths
+                    </label>
+                    <label>
+                        <input type="radio" name="data-type" value="confirmed">
+                        Confirmed
+                    </label>
+                </div>
+                <div id="chart-type-container"">
+                    <label>
+                        <input type="radio" name="chart-type" value="bar">
+                        Bar
+                    </label>
+                    <label>
+                        <input type="radio" name="chart-type" value="line" checked>
+                        Line
+                    </label>
+                </div>
+            </form>
+        </header>
+
+        <footer>
+            <img id="logo" src="./assets/virus.png">
+            Logo by&nbsp;<a href="https://www.iconfinder.com/dDara">dDara</a></footer>
+    </div>
+    <script src="./bundle.js"></script>
+</body>
+</html>

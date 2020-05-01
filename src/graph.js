@@ -37,6 +37,7 @@ const graph = {
                     duration: 0
                 },
                 legend: {
+                    align: 'start',
                     position: 'bottom',
                     onClick: function(e, legendItem) {
                         let index = legendItem.datasetIndex;
