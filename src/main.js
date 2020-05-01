@@ -1,92 +1,16 @@
-import parse from 'csv-parse';
 import moment from 'moment';
 import Chart from 'chart.js';
 
 import './style.css';
 
-const config = {
-    countries: [
-        {
-            name: "Quebec",
-            color: "blue",
-            checked: true,
-        },
-        {
-            name: "France",
-            color: "red",
-            checked: true,
-        },
-        {
-            name: "US",
-            color: "pink",
-            checked: false,
-        },
-        {
-            name: "Italy",
-            color: "green",
-            checked: true,
-        },
-        {
-            name: "Spain",
-            color: "yellow",
-            checked: true,
-        },
-        {
-            name: "Belgium",
-            color: "lightblue",
-            checked: true,
-        },
-        {
-            name: "Germany",
-            color: "lightpink",
-            checked: true,
-        },
-        {
-            name: "United Kingdom",
-            color: "turquoise",
-            checked: true,
-        },
-        {
-            name: "Brazil",
-            color: "#F0F",
-            checked: true,
-        },
-        
-    ],
-
-    sortCountries: function(){
-        config.countries.sort((a, b) => {
-            if (a.checked){
-                return -1;
-            }
-            if (b.checked){
-                return 1;
-            }
-        })
-    }
-}
+import config from './config';
+import api from './api';
 
 const dataHandler = {
     rawData: null,
     data: {
         labels: [],
         datasets: []
-    },
-
-    loadData: function(){
-        const url = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv";
-        fetch(url)
-            .then(function(response){
-                return response.text();
-            })
-            .then(function(data){
-                parse(data, {
-                    columns: true
-                }, function(err, output){
-                    dataHandler.rawData = output;
-                    dataHandler.prepareData(app.createInitialGraph);
-                });
-            });
     },
 
     prepareData: function(callback){
@@ -164,7 +88,12 @@ const app = {
     init: function(){
         config.sortCountries();
         app.addControls();
-        dataHandler.loadData();
+        api.loadData(app.onDataLoaded);
+    },
+
+    onDataLoaded: function(data){
+        dataHandler.rawData = data;
+        dataHandler.prepareData(app.createInitialGraph);
     },
 
     addControls: function(){
