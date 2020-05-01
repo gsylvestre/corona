@@ -9,8 +9,8 @@ const app = {
     init: function(){
         config.sortCountries();
         api.setConfig(config);
-        api.loadData(app.onDataLoaded);
-        controls.init(graph, api, config);
+        api.loadData("deaths", app.onDataLoaded);
+        controls.init(graph, api, config, app);
     },
 
     onDataLoaded: function(){

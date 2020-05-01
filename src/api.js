@@ -14,8 +14,13 @@ const api = {
         api.config = config;
     },
 
-    loadData: function(callback){
-        const url = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv";
+    loadData: function(type, callback){
+        let url = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv";
+
+        if(type === "confirmed"){
+            url = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv";
+        }
+
         fetch(url)
             .then(function(response){
                 return response.text();

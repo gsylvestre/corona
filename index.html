@@ -15,7 +15,22 @@
         
     <header>
         <img id="logo" src="dist/assets/virus.png">
-        <form id="controls"></form>
+        <form id="controls">
+            <div id="country-checkboxes-container"></div>
+            <div id="start-date-container"">
+                <label for="start-date">Start from:</label><input name="start-date" id="start-date" value="06/03">
+            </div>
+            <div id="type-container"">
+                <label>
+                    <input type="radio" name="data-type" value="deaths" checked>
+                    Deaths
+                </label>
+                <label>
+                    <input type="radio" name="data-type" value="confirmed">
+                    Confirmed
+                </label>
+            </div>
+        </form>
     </header>
     <script src="dist/bundle.js"></script>
 </body>
