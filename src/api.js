@@ -77,7 +77,14 @@ const api = {
                 let formattedDate = date.format("DD/MM");
                 api.data.labels.push(formattedDate);
             }
-            preparedData.data.push(data[key]);
+
+            //in %
+            //let val = data[key] / api.getCountryPopulationByName(preparedData.label) * 100;
+
+            //or in value 
+            let val = data[key];
+
+            preparedData.data.push(val);
         };
 
         return preparedData;
@@ -101,6 +108,14 @@ const api = {
         for(let i = 0; i < api.config.countries.length; i++){
             if (countryName === api.config.countries[i].name){
                 return api.config.countries[i].color;
+            }
+        }
+    },
+
+    getCountryPopulationByName: function(countryName) {
+        for(let i = 0; i < api.config.countries.length; i++){
+            if (countryName === api.config.countries[i].name){
+                return api.config.countries[i].population;
             }
         }
     },
