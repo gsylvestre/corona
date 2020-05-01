@@ -3,7 +3,8 @@ import Chart from 'chart.js';
 const graph = {
     chart: null,
 
-    update: function(){
+    update: function(newData){
+        graph.chart.data = newData;
         graph.chart.update();
     },
 
