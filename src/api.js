@@ -1,5 +1,4 @@
 import parse from 'csv-parse';
-import moment from 'moment';
 
 const api = {
     countriesToInclude: [],
