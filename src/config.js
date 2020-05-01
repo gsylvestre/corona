@@ -2,47 +2,47 @@ const config = {
     countries: [
         {
             name: "Quebec",
-            color: "blue",
+            color: "#b58900",
             population: 8480000
         },
         {
             name: "France",
-            color: "red",
+            color: "#cb4b16",
             population: 65273511
         },
         {
             name: "US",
-            color: "pink",
+            color: "#dc322f",
             population: 331002651
         },
         {
             name: "Italy",
-            color: "green",
+            color: "#d33682",
             population: 60461826
         },
         {
             name: "Spain",
-            color: "yellow",
+            color: "#6c71c4",
             population: 46754778
         },
         {
             name: "Belgium",
-            color: "lightblue",
+            color: "#268bd2",
             population: 11589623	
         },
         {
             name: "Germany",
-            color: "lightpink",
+            color: "#2aa198",
             population: 83783942
         },
         {
             name: "United Kingdom",
-            color: "turquoise",
+            color: "#859900",
             population: 67886011
         },
         {
             name: "Brazil",
-            color: "#F0F",
+            color: "#657b83",
             population: 212559417	
         }
         
