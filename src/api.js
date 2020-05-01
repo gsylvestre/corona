@@ -12,6 +12,9 @@ const api = {
 
     setConfig: function(config){
         api.config = config;
+        config.countries.forEach(country => {
+            api.countriesToInclude.push(country.name);
+        });
     },
 
     loadData: function(type, callback){
@@ -53,6 +56,7 @@ const api = {
         let preparedData  = {};
         preparedData.label = data["Province/State"] ? data["Province/State"] : data["Country/Region"];
         preparedData.borderColor = api.getCountryColorByName(preparedData.label);
+        preparedData.hidden = !api.getCountryDisplayByName(preparedData.label);
         preparedData.prevBorderColor = preparedData.borderColor;
         preparedData.data = [];
         //for first country, we will add labels
@@ -97,6 +101,14 @@ const api = {
         for(let i = 0; i < api.config.countries.length; i++){
             if (countryName === api.config.countries[i].name){
                 return api.config.countries[i].color;
+            }
+        }
+    },
+
+    getCountryDisplayByName: function(countryName) {
+        for(let i = 0; i < api.config.countries.length; i++){
+            if (countryName === api.config.countries[i].name){
+                return api.config.countries[i].display;
             }
         }
     }

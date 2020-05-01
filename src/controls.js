@@ -11,22 +11,6 @@ const controls = {
         controls.graph = graph;
         controls.app = app;
         
-        let countryContainer = document.getElementById('country-checkboxes-container');
-        config.countries.forEach(country => {
-            let label = document.createElement('label');
-            label.textContent = country.name;
-            //label.style.color = country.color;
-            label.className = "country-label";
-            let checkbox = document.createElement('input');
-            checkbox.name = "include-country-checkbox"
-            checkbox.type = "checkbox";
-            checkbox.value = country.name;
-            checkbox.checked = country.checked;
-            checkbox.addEventListener('change', controls.onCountryChange);
-            label.prepend(checkbox);
-            countryContainer.appendChild(label);
-        });
-
         let dataTypeRadios = document.querySelectorAll('input[name="data-type"]');
         dataTypeRadios.forEach(dataTypeRadio => {
             dataTypeRadio.addEventListener('change', controls.onDataTypeChange);
@@ -36,7 +20,6 @@ const controls = {
         startDateInput.addEventListener("blur", controls.onStartDateBlur);
         startDateInput.addEventListener("keydown", controls.onStartDateKeydown);
 
-        controls.updateCountriesToInclude();
     },
 
     onDataTypeChange: function(){
@@ -61,18 +44,6 @@ const controls = {
         controls.api.prepareData(controls.graph.update);
     },
 
-    onCountryChange: function(){
-        controls.updateCountriesToInclude();
-        controls.api.prepareData(controls.graph.update);
-    },
-
-    updateCountriesToInclude: function(){
-        controls.api.countriesToInclude = [];
-        let checkedCheckboxes = document.querySelectorAll('#controls input[name="include-country-checkbox"]:checked');
-        checkedCheckboxes.forEach(cb => {
-            controls.api.countriesToInclude.push(cb.value);
-        });
-    },
 }
 
 export default controls;

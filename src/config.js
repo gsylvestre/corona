@@ -3,57 +3,57 @@ const config = {
         {
             name: "Quebec",
             color: "blue",
-            checked: true,
+            display: true,
         },
         {
             name: "France",
             color: "red",
-            checked: true,
+            display: true,
         },
         {
             name: "US",
             color: "pink",
-            checked: false,
+            display: false,
         },
         {
             name: "Italy",
             color: "green",
-            checked: true,
+            display: true,
         },
         {
             name: "Spain",
             color: "yellow",
-            checked: true,
+            display: true,
         },
         {
             name: "Belgium",
             color: "lightblue",
-            checked: true,
+            display: false,
         },
         {
             name: "Germany",
             color: "lightpink",
-            checked: true,
+            display: false,
         },
         {
             name: "United Kingdom",
             color: "turquoise",
-            checked: true,
+            display: true,
         },
         {
             name: "Brazil",
             color: "#F0F",
-            checked: true,
+            display: true,
         },
         
     ],
 
     sortCountries: function(){
         config.countries.sort((a, b) => {
-            if (a.checked){
+            if (a.display){
                 return -1;
             }
-            if (b.checked){
+            if (b.display){
                 return 1;
             }
         })
