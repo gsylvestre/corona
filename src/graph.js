@@ -45,6 +45,16 @@ const graph = {
                             }
                             graph.chart.update();
                         }
+                    }, 
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                //format number
+                                callback: function(value, index, values) {
+                                    return value.toLocaleString();
+                                }
+                            }
+                        }]
                     }
                 },
             }
