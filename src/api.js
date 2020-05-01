@@ -1,4 +1,5 @@
 import parse from 'csv-parse';
+import graph from './graph';
 
 const api = {
     countriesToInclude: [],
@@ -57,7 +58,7 @@ const api = {
         preparedData.label = data["Province/State"] ? data["Province/State"] : data["Country/Region"];
         preparedData.backgroundColor = api.getCountryColorByName(preparedData.label);
         preparedData.borderColor = api.getCountryColorByName(preparedData.label);
-        preparedData.hidden = !api.getCountryDisplayByName(preparedData.label);
+        preparedData.hidden = !graph.isCountryShowing(preparedData.label);
         preparedData.prevBorderColor = preparedData.borderColor;
         preparedData.data = [];
         //for first country, we will add labels

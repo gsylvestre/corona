@@ -1,8 +1,10 @@
 import Chart from 'chart.js';
+import config from './config';
 
 const graph = {
     chart: null,
     chartType: "line",
+    showingCountries: [],
 
     update: function(newData){
         graph.chart.data = newData;
@@ -43,8 +45,18 @@ const graph = {
                         // See controller.isDatasetVisible comment
                         meta.hidden = meta.hidden === null ? !graph.chart.data.datasets[index].hidden : null;
                     
+                        let foundIndex = graph.showingCountries.indexOf(legendItem.text);
+                        if (foundIndex > -1){
+                            graph.showingCountries.splice(foundIndex, 1);
+                        }
+                        else {
+                            graph.showingCountries.push(legendItem.text);
+                        }
+
                         // We hid a dataset ... rerender the chart
                         graph.chart.update();
+
+                        graph.saveShowingCountries();
                     },
                 }, 
                 scales: {
@@ -60,7 +72,29 @@ const graph = {
             },
             
         });
-    }
+    }, 
+
+    saveShowingCountries: function(){
+        let json = JSON.stringify(graph.showingCountries);
+        localStorage.setItem('showingCountries', json);
+    },
+
+    getShowingCountries: function(){
+        let json = localStorage.getItem('showingCountries');
+        if (!json){
+            return false;
+        }
+        graph.showingCountries = JSON.parse(json);
+        return graph.showingCountries;
+    },
+
+    isCountryShowing: function(countryName){
+        let showingCountries = graph.getShowingCountries();
+        if (!showingCountries){
+            return false;
+        }
+        return showingCountries.indexOf(countryName) > -1;
+    },
 }
 
 export default graph;
