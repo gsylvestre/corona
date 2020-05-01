@@ -55,6 +55,7 @@ const api = {
     prepareLineData: function(data){
         let preparedData  = {};
         preparedData.label = data["Province/State"] ? data["Province/State"] : data["Country/Region"];
+        preparedData.backgroundColor = api.getCountryColorByName(preparedData.label);
         preparedData.borderColor = api.getCountryColorByName(preparedData.label);
         preparedData.hidden = !api.getCountryDisplayByName(preparedData.label);
         preparedData.prevBorderColor = preparedData.borderColor;

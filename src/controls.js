@@ -1,4 +1,5 @@
 import api from "./api";
+import graph from "./graph";
 
 const controls = {
 
@@ -16,10 +17,20 @@ const controls = {
             dataTypeRadio.addEventListener('change', controls.onDataTypeChange);
         });
 
+        let chartTypeRadios = document.querySelectorAll('#chart-type-container input[name="chart-type"]');
+        chartTypeRadios.forEach(chartTypeRadio => {
+            chartTypeRadio.addEventListener('change', controls.onChartTypeChange);
+        });
+
         let startDateInput = document.getElementById('start-date');
         startDateInput.addEventListener("blur", controls.onStartDateBlur);
         startDateInput.addEventListener("keydown", controls.onStartDateKeydown);
 
+    },
+
+    onChartTypeChange: function(){
+        let selectedChartType = document.querySelector('#chart-type-container input[name="chart-type"]:checked').value;
+        controls.graph.changeToType(selectedChartType);
     },
 
     onDataTypeChange: function(){

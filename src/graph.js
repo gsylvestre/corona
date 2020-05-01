@@ -2,10 +2,18 @@ import Chart from 'chart.js';
 
 const graph = {
     chart: null,
+    chartType: "line",
 
     update: function(newData){
         graph.chart.data = newData;
         graph.chart.update();
+    },
+
+    changeToType: function(type){
+        graph.chartType = type;
+        let prevData = graph.chart.data;
+        graph.chart.destroy();
+        graph.createInitial(prevData);
     },
 
     createInitial: function(data){
@@ -18,7 +26,7 @@ const graph = {
         const ctx = document.getElementById('myChart').getContext('2d');
 
         graph.chart = new Chart(ctx, {
-            type: 'line',
+            type: graph.chartType,
             data: data,
             options: {
                 defaultFontFamily: 'Manrope',

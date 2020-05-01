@@ -3,7 +3,7 @@ const config = {
         {
             name: "Quebec",
             color: "blue",
-            display: true,
+            display: false,
             population: 8480000
         },
         {
@@ -21,13 +21,13 @@ const config = {
         {
             name: "Italy",
             color: "green",
-            display: true,
+            display: false,
             population: 60461826
         },
         {
             name: "Spain",
             color: "yellow",
-            display: true,
+            display: false,
             population: 46754778
         },
         {
@@ -45,13 +45,13 @@ const config = {
         {
             name: "United Kingdom",
             color: "turquoise",
-            display: true,
+            display: false,
             population: 67886011
         },
         {
             name: "Brazil",
             color: "#F0F",
-            display: true,
+            display: false,
             population: 212559417	
         },
         
