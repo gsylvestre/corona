@@ -18,47 +18,40 @@ const graph = {
         const ctx = document.getElementById('myChart').getContext('2d');
 
         graph.chart = new Chart(ctx, {
-                type: 'line',
-                data: data,
-                options: {
-                    defaultFontFamily: 'Manrope',
-                    maintainAspectRatio: false, 
-                    animation: {
-                        duration: 0
-                    },
-                    legend: {
-                        position: 'bottom',
-                        onHover: function(evt, info){
-                            for(let i = 0; i < graph.chart.data.datasets.length; i++){
-                                if (i !== info.datasetIndex){
-                                    graph.chart.data.datasets[i].borderColor = "black";
-                                }
-                                else {
-                                    //app.chart.data.datasets[i].borderColor = "#F0F";
-                                }
-                            }
-                            graph.chart.update();
-                        },
-                        onLeave: function(evt, info){
-                            for(let i = 0; i < graph.chart.data.datasets.length; i++){
-                                graph.chart.data.datasets[i].borderColor = graph.chart.data.datasets[i].prevBorderColor;
-                            }
-                            graph.chart.update();
-                        }
-                    }, 
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                //format number
-                                callback: function(value, index, values) {
-                                    return value.toLocaleString();
-                                }
-                            }
-                        }]
-                    }
+            type: 'line',
+            data: data,
+            options: {
+                defaultFontFamily: 'Manrope',
+                maintainAspectRatio: false, 
+                animation: {
+                    duration: 0
                 },
-            }
-        );
+                legend: {
+                    position: 'bottom',
+                    onClick: function(e, legendItem) {
+                        let index = legendItem.datasetIndex;
+                        let meta = graph.chart.getDatasetMeta(index);
+
+                        // See controller.isDatasetVisible comment
+                        meta.hidden = meta.hidden === null ? !graph.chart.data.datasets[index].hidden : null;
+                    
+                        // We hid a dataset ... rerender the chart
+                        graph.chart.update();
+                    },
+                }, 
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            //format number
+                            callback: function(value, index, values) {
+                                return value.toLocaleString();
+                            }
+                        }
+                    }]
+                }
+            },
+            
+        });
     }
 }
 

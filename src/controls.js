@@ -24,7 +24,7 @@ const controls = {
 
     onDataTypeChange: function(){
         let selectedDataType = document.querySelector('#controls input[name="data-type"]:checked').value;
-        api.loadData(selectedDataType, controls.app.onDataLoaded);
+        api.loadData(selectedDataType, controls.graph.update);
     },
 
     onStartDateBlur: function(){
