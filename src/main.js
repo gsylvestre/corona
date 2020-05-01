@@ -25,6 +25,9 @@ const app = {
         
         api.startsAtDate = localStorage.getItem('startsAtDate') ? moment(localStorage.getItem('startsAtDate')) : moment("2020-03-06");
         document.getElementById("start-date").value = api.startsAtDate.format("DD/MM");
+        
+        api.relativeToPopulation = localStorage.getItem('relativeToPopulation') ? localStorage.getItem('relativeToPopulation') : 'absolute';
+        document.querySelector('input[value="'+api.relativeToPopulation+'"]').checked = true;
 
         api.loadData(dataType, app.onDataLoaded);
         controls.init(graph, api, config, app);

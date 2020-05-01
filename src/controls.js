@@ -22,6 +22,11 @@ const controls = {
             chartTypeRadio.addEventListener('change', controls.onChartTypeChange);
         });
 
+        let relativeToPopulationRadios = document.querySelectorAll('#population-container input[name="population"]');
+        relativeToPopulationRadios.forEach(relativeToPopulationRadio => {
+            relativeToPopulationRadio.addEventListener('change', controls.onRelativeToPopulationChange);
+        });
+
         let startDateInput = document.getElementById('start-date');
         startDateInput.addEventListener("blur", controls.onStartDateBlur);
         startDateInput.addEventListener("keydown", controls.onStartDateKeydown);
@@ -38,6 +43,12 @@ const controls = {
         let selectedDataType = document.querySelector('#controls input[name="data-type"]:checked').value;
         localStorage.setItem('dataType', selectedDataType);
         api.loadData(selectedDataType, controls.graph.update);
+    },
+
+    onRelativeToPopulationChange: function(){
+        controls.api.relativeToPopulation = document.querySelector('#controls input[name="population"]:checked').value;
+        localStorage.setItem('relativeToPopulation', controls.api.relativeToPopulation);
+        controls.api.prepareData(controls.graph.update);
     },
 
     onStartDateBlur: function(){

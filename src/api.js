@@ -9,6 +9,7 @@ const api = {
         datasets: []
     },
     startsAtDate: null,
+    relativeToPopulation: null,
     config: null,
 
     setConfig: function(config){
@@ -80,11 +81,12 @@ const api = {
                 api.data.labels.push(formattedDate);
             }
 
-            //in %
-            //let val = data[key] / api.getCountryPopulationByName(preparedData.label) * 100;
-
-            //or in value 
+            
             let val = data[key];
+            //in %
+            if (api.relativeToPopulation === "relative"){
+                val = data[key] / api.getCountryPopulationByName(preparedData.label) * 100;
+            }
 
             preparedData.data.push(val);
         };

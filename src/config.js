@@ -2,17 +2,18 @@ const config = {
     countries: [
         {
             name: "Quebec",
-            color: "#b58900",
+            color: "#268bd2",
+
             population: 8480000
         },
         {
             name: "France",
-            color: "#cb4b16",
+            color: "#dc322f",
             population: 65273511
         },
         {
             name: "US",
-            color: "#dc322f",
+            color: "#cb4b16",
             population: 331002651
         },
         {
@@ -27,7 +28,7 @@ const config = {
         },
         {
             name: "Belgium",
-            color: "#268bd2",
+            color: "#b58900",
             population: 11589623	
         },
         {
