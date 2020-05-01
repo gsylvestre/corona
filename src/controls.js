@@ -29,11 +29,23 @@ const controls = {
         startDateInput.name = "start-date";
         startDateInput.id = "start-date";
         startDateInput.value = "06/03";
-        startDateInput.addEventListener("blur", controls.onStartDateChange);
+        startDateInput.addEventListener("blur", controls.onStartDateBlur);
+        startDateInput.addEventListener("keydown", controls.onStartDateKeydown);
         startDateInputContainer.appendChild(startDateInput);
         container.appendChild(startDateInputContainer);
 
         controls.updateCountriesToInclude();
+    },
+
+    onStartDateBlur: function(evt){
+        controls.onStartDateChange();
+    },
+
+    onStartDateKeydown: function(evt){
+        if (evt.key === "Enter") {
+            evt.preventDefault();
+            document.getElementById("start-date").blur();
+        }
     },
 
     onStartDateChange: function(){
